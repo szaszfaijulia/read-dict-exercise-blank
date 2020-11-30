@@ -16,8 +16,8 @@ const promise = (texts) =>
     })
   )
   .then(content =>
-    Promise.all(    //promises //promeise-okat tartalmazó fv-eket adunk át neki
-      content.forEach(text =>   //
+    Promise.all(    //promise-all-nak promeise-okat tartalmazó fv-eket adunk át
+      content.map(text =>   //forEach
         new Promise((resolve, reject) =>
           fs.readFile(path.join('texts', text), (err, content) => {
             // fájlok tartalmának kiolvasása,
@@ -30,11 +30,11 @@ const promise = (texts) =>
             }
           })
         )
-        .then(content => content.toString())
+        .then(content => content.toString())  //stringgé alakítja
         .catch(err => console.log(err))
       )
     )
-    .then(result => result.join(' '))
+    .then(result => result.join(' ')) //összeilleszti
     .catch(err => console.log(err))
   )
   .catch(err => console.log(err));
