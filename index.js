@@ -6,7 +6,7 @@ const path = require('path')
 
 const promise = (texts) => 
   new Promise((resolve, reject) =>  //teljesít, visszautasít
-    fs.readdir(path.join('texts'), (err, content) => {
+    fs.readdir(path.join(texts), (err, content) => {
       //kiolvassuk a könyvtárbejegyzések listáját, (elérési út, error first callback)
       if (err) {
         reject(err);  //a promise catch fv-e kapja
@@ -34,7 +34,7 @@ const promise = (texts) =>
         .catch(err => console.log(err))
       )
     )
-    .then(result => result.join(' ')) //összeilleszti
+    .then(result => result.join(' ')) //összekapcsolja
     .catch(err => console.log(err))
   )
   .catch(err => console.log(err));
